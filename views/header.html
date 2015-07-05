@@ -1,0 +1,16 @@
+<div id="navigation">
+    <a left-click="setTab(titre)" href ui-sref="{{titre.url}}">
+        <div id="logo" ng-class="{actu: titre.isClicked}">
+            <img src="../img/logo.png"/>
+            <h1>{{titre.name}}</h1>
+        </div>
+    </a>
+    <nav>
+        <ul>
+            <a ng-repeat="menu in menus" href ui-sref="{{menu.url}}" left-click="setTab(menu)"><li ng-class="{actu: menu.isClicked}">{{menu.name}}</li></a>
+        </ul>
+    </nav>
+</div>
+<div class="header">
+    <img ng-show="titre.isClicked" src="../img/header.png"/>
+</div>

@@ -1,0 +1,22 @@
+<div>
+    <div id="silph">
+        <div left-click="switchSearch(searchopen)" ng-class="{amimated:!loading&&!searchopen, open:searchopen}">ervice de recherche</div>
+    </div>
+    <div id="silphPanel" silph-panel></div>
+</div>
+
+<div>
+     <div class="cardcollection">
+        <div class="card shadowbox" ng-repeat="pokemon in pokemons | filter:search">
+            <h4>#{{pokemon.no_national | numberFixedLen:3}} - {{pokemon.name_fr}}</h4>
+            <div class="cardaligner">
+                <img class="cardimg" ng-src="../img/xy/{{pokemon.no_national | numberFixedLen:3}}.png"/>
+                <div></div>
+            </div>
+            <div class="cardbottomtext">
+                {{pokemon.type1.name_fr}}
+                {{pokemon.type2?" - " + pokemon.type2.name_fr:""}}
+            </div>
+        </div>
+    </div>
+</div>

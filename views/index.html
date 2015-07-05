@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="porygondex">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../img/logo.png" rel="icon" type="image/png"/>
+        <title>PorygonDex</title>
+        <script src="/angular/angular.min.js"></script>
+        <script src="/angular/angular-ui-router.min.js"></script>
+        <script src="/js/porygondex.js"></script>
+    </head>
+    <body>
+
+        <!--header ui-view="header">
+        </header-->
+        <header menu-header></header>
+
+        <section ui-view="body" ng-class="{pokedex:isPokedexPage()}">
+        </section>
+
+
+        <footer>
+            <div id="copyright">
+                <div>Copyright 2013-2015 PorygonDex.com. Tous droits réservés.</div>
+                <div>Pokémon est une marque déposée de Nintendo.</div>
+            </div>
+        </footer>
+    </body>
+</html>

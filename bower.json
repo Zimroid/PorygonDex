@@ -1,0 +1,17 @@
+{
+  "name": "porygondex",
+  "version": "0.0.1",
+  "main": "public/html/index.html",
+  "dependencies": {
+    "angular": "~1.2.22",
+    "angular-ui-router": "~0.2.11"
+  },
+    "overrides": {
+        "angular": {
+            "main": "angular.min.js" 
+        },
+        "angular-ui-router": {
+            "main": "release/angular-ui-router.min.js"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+ <div ng-class="{noamim: loading, search: true}" ng-show=searchopen>
+    <div id="contenerfix">
+        <input class="namefilter" type="text" ng-model="nameFrQuery" placeholder="Nom français" ng-change="setNameFr(nameFrQuery)"/>
+        <br>
+        <input class="namefilter" type="text" ng-model="nameEnQuery" placeholder="Nom anglais" ng-change="setNameEn(nameEnQuery)"/>
+
+
+        <div class="separator"></div>
+
+
+        <div class="typeselector" type-selector></div>
+
+        <div class="separator"></div>
+
+        <div id="generations">
+            <input type="checkbox" id="1g" ng-model="g1Query" ng-change="setG(0, g1Query)"><label for="1g">1G</label>
+            <input type="checkbox" id="2g" ng-model="g2Query" ng-change="setG(1, g2Query)"><label for="2g">2G</label>
+            <input type="checkbox" id="3g" ng-model="g3Query" ng-change="setG(2, g3Query)"><label for="3g">3G</label>
+            <input type="checkbox" id="4g" ng-model="g4Query" ng-change="setG(3, g4Query)"><label for="4g">4G</label>
+            <input type="checkbox" id="5g" ng-model="g5Query" ng-change="setG(4, g5Query)"><label for="5g">5G</label>
+            <input type="checkbox" id="6g" ng-model="g6Query" ng-change="setG(5, g6Query)"><label for="6g">6G</label>
+        </div>
+    </div>
+
+</div>

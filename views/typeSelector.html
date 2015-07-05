@@ -1,0 +1,51 @@
+<div ng-repeat="types in typesSelected">
+
+    <select class="typefilter" ng-model="types.type1">
+        <option></option>
+        <option value="0">Normal</option>
+        <option value="1">Feu</option>
+        <option value="2">Eau</option>
+        <option value="3">Plante</option>
+        <option value="4">Electrique</option>
+        <option value="5">Glace</option>
+        <option value="6">Combat</option>
+        <option value="7">Poison</option>
+        <option value="8">Sol</option>
+        <option value="9">Vol</option>
+        <option value="10">Psy</option>
+        <option value="11">Insecte</option>
+        <option value="12">Roche</option>
+        <option value="13">Spectre</option>
+        <option value="14">Dragon</option>
+        <option value="15">Ténèbre</option>
+        <option value="16">Acier</option>
+        <option value="17">Fée</option>
+    </select>
+
+    <select class="typefilter" ng-model="types.type2">
+        <option></option>
+        <option value="-1">Type unique</option>
+        <option value="0">Normal</option>
+        <option value="1">Feu</option>
+        <option value="2">Eau</option>
+        <option value="3">Plante</option>
+        <option value="4">Electrique</option>
+        <option value="5">Glace</option>
+        <option value="6">Combat</option>
+        <option value="7">Poison</option>
+        <option value="8">Sol</option>
+        <option value="9">Vol</option>
+        <option value="10">Psy</option>
+        <option value="11">Insecte</option>
+        <option value="12">Roche</option>
+        <option value="13">Spectre</option>
+        <option value="14">Dragon</option>
+        <option value="15">Ténèbre</option>
+        <option value="16">Acier</option>
+        <option value="17">Fée</option>
+    </select>
+
+
+    <div class="typefilterdelete" ng-click="removeTypeFilter($index)">x</div>
+</div>
+<div class="silphbutton" ng-click="addTypeFilter()">Ajouter un filtre de type</div>

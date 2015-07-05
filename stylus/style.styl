@@ -1,0 +1,652 @@
+//Variables and methods
+
+fonts = "roboto", "icomoon", "Lucida Grande", sans-serif
+pageWidth = 950px
+barHeight = 40px
+cardWidth = 200px
+porygonBlue = #23a2eb
+porygonBlack = #2a303a
+porygonLightBlue = #52bffe
+navigationTabWidth = 25%
+langButtonWidth = 12.5%
+darkGrey = #c7c7c7
+normalGrey = #a3abb7
+lightGrey = #eeeeee
+backgroundGrey = #f1f1f1
+borderRadius = 5px
+
+bigPokeball = 40px
+smallPokeball = 24px
+
+box-shadow()
+    -webkit-box-shadow arguments
+    -moz-box-shadow arguments
+    box-shadow arguments
+
+animation()
+	-webkit-animation arguments
+	-moz-animation arguments
+	-o-animation arguments
+	animation arguments
+
+transform()
+	-webkit-transform arguments
+	-moz-transform arguments
+	-o-transform arguments
+	transform arguments
+
+//-----------------------------
+//fonts
+
+@font-face
+    font-family: logo
+    src: url(/font/Medabots.ttf)
+
+@font-face
+    font-family: roboto
+    src: url(/font/Roboto-Light.ttf)
+
+@font-face
+    font-family: icomoon
+    src: url(/font/icomoon.ttf)
+
+//-----------------------------
+//Body
+
+html, body
+	margin: 0px
+	height: 100%
+
+*
+	font-family: fonts
+
+input, select
+  box-sizing: border-box
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  border: 1px #ffffff solid
+
+ h4, b
+ 	font-weight: 100
+
+//-----------------------------
+//Menu
+
+#navigation
+	width: pageWidth
+	height: barHeight
+	margin: auto
+
+#logo.actu, nav .actu, #logo.actu:hover, nav .actu:hover
+	background: porygonBlue
+	color: #ffffff
+	cursor: default
+
+#logo
+	width: 25%
+	height: barHeight
+	float: left
+	color: porygonBlack
+	overflow: hidden
+
+#logo:hover
+	background-color: porygonLightBlue
+	color: #ffffff
+	cursor: pointer
+
+#logo > img
+	float: left
+	margin-right: 5px
+	margin-left: 5px
+
+#logo > h1
+	font-family: logo
+	line-height: barHeight
+	margin: 0px
+
+
+
+nav
+	height: barHeight
+	width: 50%
+	float: left
+	font-size: 14px
+
+nav > ul
+	list-style: none
+	margin: 0px
+	padding: 0px
+
+nav > ul > a > li
+	line-height: barHeight
+	color: porygonBlack
+	text-decoration: none
+	font-weight: bold
+	display: inline-block
+	width: navigationTabWidth
+	text-align: center
+	height: barHeight
+
+nav > ul > a > li:hover
+	background: porygonLightBlue
+	color: #ffffff
+	cursor: pointer
+
+#lang
+	height: barHeight
+	width: langButtonWidth
+	float: right
+
+#lang > ul
+	list-style: none
+	margin: 0px
+	padding: 0px
+
+#lang > ul > a > li
+	display: inline-block
+	line-height: (barHeight / 2)
+	margin-top: 10px
+	margin-bottom: 10px
+	padding-left: 10px
+	padding-right: 10px
+	border: 1px solid darkGrey
+	border-radius: borderRadius
+	margin-right: 4px
+
+#lang > ul > a:last-child > li
+	margin-right: 0px
+
+#lang > ul > a > li:hover
+	background-color: lightGrey
+	cursor: pointer
+
+#lang > ul > a > li.actu, #lang > ul > a > li.actu:hover
+	background-color: darkGrey
+	color: #ffffff
+	cursor: default
+
+div.header
+	width: 100%
+	background-color: porygonBlue
+	min-height: barHeight
+
+div.header > img
+	display: block
+	margin: auto
+
+
+//-----------------------------
+//Section
+
+section
+	width: 100%
+	background-color: backgroundGrey
+	overflow: hidden
+
+section.pokedex
+	min-height: 100%
+
+
+//-----------------------------
+//Home
+
+
+#home
+	width: pageWidth
+	margin: auto
+	background-color: #ffffff
+
+.shadowbox
+	box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.75)
+
+section > div > div
+	margin-bottom: 2em
+	width: 100%
+	min-height: 250px
+
+section > div > div > img
+	float: left
+	margin: 2em
+
+section > div > div.right > img
+	float: right
+
+div.imgwithshadow
+	position: relative
+	float: left
+	margin: 2em
+	top: 0px
+
+img.withshadow
+	position: absolute
+	z-index: 100
+	float: none
+	margin: 0px
+
+section > div > div > div
+	position: relative
+	top: 3em
+
+section > div > div > div > p, section > div > div > div > h4
+	padding-left: 2em
+	padding-right: 2em
+
+section > div > div > div > p
+	color: normalGrey
+
+section > div > div > div > p > b, section > div > div > div > h4
+	color: porygonBlack
+
+
+@keyframes apianim
+	0%
+		background-color: #e74c3c
+	12.5%
+		background-color: #e67e22
+	25%
+		background-color: #f1c40f
+	37.5%
+		background-color: #1abc9c
+	50%
+		background-color: #2ecc71
+	62.5%
+		background-color: #3498db
+	75%
+		background-color: #9b59b6
+	87.5%
+		background-color: #34495e
+	100%
+		background-color: #e74c3c
+
+img.shadow
+	animation: apianim 6s infinite ease
+	background: #A2D39C
+
+
+//-----------------------------
+//Pokedex
+
+
+.cardcollection
+	text-align: center
+	margin-bottom: 1em
+
+.card
+	top: 5px
+	display: inline-block
+	width: cardWidth
+	height: cardWidth
+	background: #ffffff
+	text-align: center
+	margin: 5px
+	white-space: nowrap
+
+.card.shadowbox:hover
+	box-shadow: 0px 4px 5px 1px rgba(50, 50, 50, 0.75)
+
+.card > h4
+	position: absolute
+	top: 0.5em
+	width: 100%
+	margin: 0px
+	padding: 0px
+
+.cardaligner
+	width: 100%
+	height: 100%
+	overflow: hidden
+
+.cardaligner > div
+	height: 100%
+
+.cardimg, .cardaligner > div
+	display: inline-block
+	vertical-align: middle
+
+.cardbottomtext
+	position: absolute
+	bottom: 0.5em
+	width: 100%
+
+//-----------------------------
+//Silph search
+
+@keyframes silphicontextopen
+	0%
+		color: porygonBlue
+	70%
+		color: porygonBlue
+	100%
+		color: #ffffff
+
+
+
+
+@keyframes silphicontopopen
+	0%
+		transform: rotate(0deg)
+		font-size: bigPokeball
+		height: bigPokeball
+		width: bigPokeball
+		margin-left: 0px
+		margin-top: 0px
+	30%
+		transform: rotate(-45deg)
+		font-size: bigPokeball
+		height: bigPokeball
+		width: bigPokeball
+		margin-left: 0px
+		margin-top: 0px
+	70%
+		font-size: smallPokeball
+		height: smallPokeball
+		width: smallPokeball
+		margin-left: 11px
+		margin-top: 1px
+	100%
+		font-size: smallPokeball
+		height: smallPokeball
+		width: smallPokeball
+		margin-left: 11px
+		margin-top: 1px
+
+
+
+
+@keyframes silphiconbottomopen
+	0%
+		transform: rotate(0deg)
+		font-size: bigPokeball
+		height: bigPokeball
+		width: bigPokeball
+		margin-top: 0px
+	30%
+		transform: rotate(-45deg)
+		font-size: bigPokeball
+		height: bigPokeball
+		width: bigPokeball
+		margin-top: 0px
+	70%
+		font-size: smallPokeball
+		height: smallPokeball
+		width: smallPokeball
+		margin-top: 15px
+	100%
+		font-size: smallPokeball
+		height: smallPokeball
+		width: smallPokeball
+		margin-top: 15px
+
+
+
+@keyframes silphicontextclose
+	0%
+		color: #ffffff
+	30%
+		color: porygonBlue
+	100%
+		color: porygonBlue
+
+
+
+
+@keyframes silphicontopclose
+	0%
+		font-size: smallPokeball
+		height: smallPokeball
+		width: smallPokeball
+		margin-left: 11px
+		margin-top: 1px
+	30%
+		font-size: smallPokeball
+		height: smallPokeball
+		width: smallPokeball
+		margin-left: 11px
+		margin-top: 1px
+	70%
+		transform: rotate(-45deg)
+		font-size: bigPokeball
+		height: bigPokeball
+		width: bigPokeball
+		margin-left: 0px
+		margin-top: 0px
+	100%
+		transform: rotate(0deg)
+		font-size: bigPokeball
+		height: bigPokeball
+		width: bigPokeball
+		margin-left: 0px
+		margin-top: 0px
+
+
+
+@keyframes silphiconbottomclose
+	0%
+		font-size: smallPokeball
+		height: smallPokeball
+		width: smallPokeball
+		margin-top: 15px
+	30%
+		font-size: smallPokeball
+		height: smallPokeball
+		width: smallPokeball
+		margin-top: 15px
+	70%
+		transform: rotate(-45deg)
+		font-size: bigPokeball
+		height: bigPokeball
+		width: bigPokeball
+		margin-top: 0px
+	100%
+		transform: rotate(0deg)
+		font-size: bigPokeball
+		height: bigPokeball
+		width: bigPokeball
+		margin-top: 0px
+
+#silph
+	height: 0px
+	position: absolute
+	display: inline-block
+
+#silph > div
+	position: relative
+	top: - barHeight
+	min-height: barHeight
+	height: barHeight
+	font-style: italic
+	color: porygonBlue
+	line-height: 59px
+	font-size: 19px
+	margin-left: 1em
+	cursor: pointer
+	padding-left: 25px
+
+
+#silph > div:before
+	font-family: icomoon
+	font-style: normal
+	position: absolute
+	content: "\e601"
+	font-size: bigPokeball
+	color: #ffffff
+	height: bigPokeball
+	width: bigPokeball
+	line-height: normal
+	left:0px
+
+#silph > div:after
+	font-family: icomoon
+	font-style: normal
+	position: absolute
+	content: "\e600"
+	font-size: bigPokeball
+	color: #ffffff
+	height: bigPokeball
+	width: bigPokeball
+	top:0px
+	left: 0px
+	line-height: normal
+
+#silph > div.amimated
+	animation: silphicontextclose 0.5s ease
+
+#silph > div.amimated:before
+	animation silphicontopclose 0.5s ease
+
+#silph > div.amimated:after
+	animation silphiconbottomclose 0.5s ease
+
+
+
+#silph > div.open
+	animation silphicontextopen 0.5s ease
+	color: #ffffff
+
+
+#silph > div.open:before
+	animation silphicontopopen 0.5s ease
+	transform: rotate(-45deg)
+	font-size: smallPokeball
+	height: smallPokeball
+	width: smallPokeball
+	margin-left: 11px
+	margin-top: 1px
+
+#silph > div.open:after
+	animation silphiconbottomopen 0.5s ease
+	transform: rotate(-45deg)
+	font-size: smallPokeball
+	height: smallPokeball
+	width: smallPokeball
+	margin-top: 15px
+
+
+#generations > input
+	display: none
+
+#generations > label
+	display: inline-block
+	height: (barHeight / 2)
+	line-height: (barHeight / 2)
+	background: porygonBlue
+	color: porygonLightBlue
+	margin: 0.2em
+	border: 1px solid porygonLightBlue
+	border-radius: borderRadius
+	padding-left: (barHeight / 4)
+	padding-right: (barHeight / 4)
+	cursor: pointer
+	margin-top: 1em
+
+#generations > input + label:hover, #generations > input:checked + label:hover, .silphbutton:hover, .typefilterdelete:hover
+	background: porygonLightBlue
+	color: #ffffff
+	border: 1px solid #ffffff
+
+#generations > input:checked + label
+	background: #ffffff
+	color: porygonBlue
+	border: 1px solid porygonLightBlue
+
+.silphbutton, .typefilterdelete
+	height: (barHeight / 2)
+	line-height: (barHeight / 2)
+	background: #ffffff
+	color: porygonBlue
+	margin: 0.2em
+	border: 1px solid porygonLightBlue
+	border-radius: borderRadius
+	padding-left: (barHeight / 4)
+	padding-right: (barHeight / 4)
+	cursor: pointer
+	display: inline-block
+	vertical-align: middle
+
+.namefilter
+	height: (barHeight / 2)
+	border-radius: borderRadius
+	font-size: (barHeight / 3)
+	padding-right: 0.5em
+	padding-left: 0.5em
+	margin-bottom: 1em
+
+.typeselector
+	margin-top: 1em
+	margin-bottom: 1em
+
+.typefilter
+	height: (barHeight / 2)
+	line-height: (barHeight / 2)
+	vertical-align: middle
+	margin: 0.2em
+
+
+
+@keyframes silphanimopen
+	0%
+		width: 0px
+	100%
+		width: 420px
+
+@keyframes silphanimclose
+	0%
+		width: 420px
+		height: 420px
+	100%
+		width: 0px
+		height: 420px
+
+.search.ng-hide
+	animation: silphanimclose 0.5s ease
+	display: block!important
+	width: 0px
+	height: 0px
+
+.search
+	animation: silphanimopen 0.5s ease
+	width: 420px
+	min-height: 420px
+	float: left
+	margin: 0px
+	overflow: hidden
+	background: porygonBlue
+	text-align: center
+	position: inherit
+
+.search.noamim, .search.noamim.ng-hide
+	display: none !important
+
+.noamim
+	-webkit-transition: none !important
+	-moz-transition: none !important
+	-ms-transition: none !important
+	-o-transition: none !important
+
+#silphPanel
+	margin-bottom: 0px
+	width: 0px
+	min-height: 0px
+
+#contenerfix
+	width: 420px
+	position: relative
+	margin-top: 2em
+	margin-bottom: 2em
+
+.separator
+	width: 100%
+	border-top: 2px dashed porygonLightBlue
+
+//-----------------------------
+//Footer
+
+
+footer
+	width: 100%
+	background-color: porygonBlue
+
+#copyright
+	color: #ffffff
+	text-align: center
+	font-size: 10px

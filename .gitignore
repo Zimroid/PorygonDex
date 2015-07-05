@@ -1,0 +1,7 @@
+bower_components
+db
+node_modules
+public/angular
+public/css
+public/html
+public/js

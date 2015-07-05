@@ -5,6 +5,8 @@ var bodyParser	= require('body-parser');
 var app			= express();
 var mongoose	= require('mongoose');
 
+//Laisse Heroku configurer le port
+var port = process.env.PORT || 8080;
 var options = {
 	user:process.env.USER_BDD,
 	pass:process.env.PASSWORD_BDD
@@ -18,6 +20,6 @@ app.use(bodyParser()); 							// pull information from html in POST
 
 require('./app/routes.js')(app);
 
-app.listen(8080);
+app.listen(port);
 
-console.log("App listening on port 8080");
+console.log("App listening on port " + port);

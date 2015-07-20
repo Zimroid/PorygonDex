@@ -32,6 +32,21 @@ module.exports = function(app) {
 	    });
 	});
 
+	// get a pokemon(s) by previous  evolution
+	app.get('/api/v1/pokemon/pre_evo/:no', function(req, res) {
+		Pokemon.find({"previous_evolution": req.params.no}, '-_id no_national type1 type2 name_fr', {sort : 'no_national'}).populate("type1", "name_en name_fr").populate("type2", "name_en name_fr").exec(function(err, pokemon){
+		    
+		    if(err) {
+	        	res.send(err);
+	        }
+
+	        res.charset = 'utf-8';
+	   		res.contentType('text');
+
+			res.json(pokemon); // return one pokemon in JSON format
+	    });
+	});
+
 	app.get('/', function(req, res) {
 		res.sendfile('./public/html/index.html');
 	});

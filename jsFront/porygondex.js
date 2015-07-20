@@ -15,6 +15,15 @@ porygondex.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
+    .state('pokemon', {
+        url: "/pokemon/{no_national}",
+        views: {
+            'body': {
+                templateUrl: "html/pokemon.html",
+                controller: 'pokemonController'
+            }
+        }
+    })
     .state('home', {
         url: "/",
         views : {
@@ -250,16 +259,13 @@ porygondex.controller('tabController', function($scope, $location) {
     $scope.menus = [{
         name: 'Pokédex',
         url: 'pokedex',
-        isClicked: page == 'pokedex'
+        isClicked: page == 'pokedex' || 'pokemon'
     }];
 
     var oldSelected;
     
-    if(page == "pokedex"){
+    if(page == "pokedex" || "pokemon"){
         oldSelected = $scope.menus[0];
-    }
-    else if(page == "telechargement"){
-        oldSelected = $scope.menus[1];
     }
     else{
         oldSelected = $scope.titre;
@@ -295,4 +301,18 @@ porygondex.directive('leftClick', function($parse){
 
         }
     };
+});
+
+//Pour controller le pokedex
+porygondex.controller('pokemonController', function($scope, $stateParams, $http) {
+    $scope.no_national = $stateParams.no_national;
+
+    $http.get('/api/v1/pokemon/'+$scope.no_national)
+        .success(function(data) {
+            $scope.pokemon = data;
+        })
+        .error(function(data) {
+            //console.log('Error: ' + data);
+        });
+    
 });

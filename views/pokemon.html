@@ -1,7 +1,7 @@
 <div>
-    <h2>#{{pokemon.no_national | numberFixedLen:3}} - {{pokemon.name_fr}}</h2>
+    <h2>#{{pokemon._id | numberFixedLen:3}} - {{pokemon.name_fr}}</h2>
     <div>
-        <img ng-src="../img/xy/{{pokemon.no_national | numberFixedLen:3}}.png"/>
+        <img ng-src="../img/xy/{{pokemon._id | numberFixedLen:3}}.png"/>
         {{pokemon.type1.name_fr}}
         {{pokemon.type2?" - " + pokemon.type2.name_fr:""}}
     </div>
@@ -27,6 +27,11 @@
         Défense spéciale : {{pokemon.special_defense}}<br>
         Vitesse : {{pokemon.speed}}
     </div>
-    {{pokemon.previous_evolution}}
-    {{pokemon.tmp_evolution_type}}
+    <div>
+        {{pokemon.previous_evolution}}<br>
+        {{pokemon.tmp_evolution_type}}
+    </div>
+    <div>
+        {{pokemon.evolutions}}
+    </div>
 </div>

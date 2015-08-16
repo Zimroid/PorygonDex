@@ -125,22 +125,22 @@ porygondex.controller('pokedexController', function($scope, $timeout, $statePara
         //Les génération
         var g = true;
 
-        if(!$scope.g1Query && pokemon.no_national < 152){
+        if(!$scope.g1Query && pokemon._id < 152){
             g = false;
         }
-        if(!$scope.g2Query && pokemon.no_national > 151 && pokemon.no_national < 252){
+        if(!$scope.g2Query && pokemon._id > 151 && pokemon._id < 252){
             g = false;
         }
-        if(!$scope.g3Query && pokemon.no_national > 251 && pokemon.no_national < 387){
+        if(!$scope.g3Query && pokemon._id > 251 && pokemon._id < 387){
             g = false;
         }
-        if(!$scope.g4Query && pokemon.no_national > 386 && pokemon.no_national < 494){
+        if(!$scope.g4Query && pokemon._id > 386 && pokemon._id < 494){
             g = false;
         }
-        if(!$scope.g5Query && pokemon.no_national > 493 && pokemon.no_national < 650){
+        if(!$scope.g5Query && pokemon._id > 493 && pokemon._id < 650){
             g = false;
         }
-        if(!$scope.g6Query && pokemon.no_national > 649){
+        if(!$scope.g6Query && pokemon._id > 649){
             g = false;
         }
 
@@ -259,12 +259,12 @@ porygondex.controller('tabController', function($scope, $location) {
     $scope.menus = [{
         name: 'Pokédex',
         url: 'pokedex',
-        isClicked: page == 'pokedex' || 'pokemon'
+        isClicked: page == 'pokedex' || page == 'pokemon'
     }];
 
     var oldSelected;
     
-    if(page == "pokedex" || "pokemon"){
+    if(page == "pokedex" || page ==  "pokemon"){
         oldSelected = $scope.menus[0];
     }
     else{
@@ -310,6 +310,27 @@ porygondex.controller('pokemonController', function($scope, $stateParams, $http)
     $http.get('/api/v1/pokemon/'+$scope.no_national)
         .success(function(data) {
             $scope.pokemon = data;
+
+            $http.get('/api/v1/pokemon/pre_evo/'+$scope.no_national)
+                .success(function(data) {
+                    $scope.pokemon.evolutions = data;
+                    
+                })
+                .error(function(data) {
+                    //console.log('Error: ' + data);
+                });
+
+            //if(typeof $scope.pokemon.pre_evo !== 'undefined'){
+                /*$http.get('/api/v1/pokemon/'+data.previous_evolution)
+                    .success(function(data) {
+                        $scope.pokemon.previous_evolution = data;
+                        
+                    })
+                    .error(function(data) {
+                        //console.log('Error: ' + data);
+                    });*/
+            //}
+
         })
         .error(function(data) {
             //console.log('Error: ' + data);

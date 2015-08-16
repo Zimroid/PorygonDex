@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 
 module.exports = mongoose.model('pokemon', {
-	no_national: {type : Number, unique : true},
+	_id: {type : Number, unique : true},
 	no_johto: {type : Number},
 	no_hoenn: {type : Number},
 	no_sinnoh: {type : Number},

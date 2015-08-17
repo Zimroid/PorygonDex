@@ -14,8 +14,8 @@
                 <div></div>
             </div>
             <div class="cardbottomtext">
-                {{pokemon.type1.name_fr}}
-                {{pokemon.type2?" - " + pokemon.type2.name_fr:""}}
+                {{types[pokemon.type1]}}
+                {{types[pokemon.type2]?" - " + types[pokemon.type2]:""}}
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ var Type = require('./models/type');
 module.exports = function(app) {
 	// get all pokemon
 	app.get('/api/v1/pokemon', function(req, res) {
-		Pokemon.find({}, 'no_national name_en name_fr type1 type2 -_id', {sort : 'no_national'}).populate("type1", "name_en name_fr").populate("type2", "name_en name_fr").exec(function(err, pokemon){
+		Pokemon.find({}, 'no_national name_en name_fr type1 type2 -_id', {sort : 'no_national'}).exec(function(err, pokemon){
 		    
 		    if(err) {
 	        	res.send(err);
@@ -19,7 +19,7 @@ module.exports = function(app) {
 
 	// get a pokemon by no_national
 	app.get('/api/v1/pokemon/:no', function(req, res) {
-		Pokemon.findOne({"no_national": req.params.no}, '-_id -__v', {sort : 'no_national'}).populate("type1", "name_en name_fr").populate("type2", "name_en name_fr").exec(function(err, pokemon){
+		Pokemon.findOne({"no_national": req.params.no}, '-_id -__v', {sort : 'no_national'}).exec(function(err, pokemon){
 		    
 		    if(err) {
 	        	res.send(err);

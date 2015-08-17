@@ -61,6 +61,7 @@ porygondex.controller('pokedexController', function($scope, $timeout, $statePara
     $scope.pokemons = [];
     $scope.searchopen = false;
     $scope.loading = true;
+    $scope.types = ["Normal", "Feu", "Eau", "Plante", "Electrique", "Glace", "Combat", "Poison", "Sol", "Vol", "Psy", "Insecte", "Roche", "Spectre", "Dragon", "Ténèbres", "Acier", "Fée"];
 
     if(!pokedexSave.get()){
         $http.get('/api/v1/pokemon')
@@ -98,16 +99,16 @@ porygondex.controller('pokedexController', function($scope, $timeout, $statePara
             //console.log(key);
             if(key == 0){
                 resType = false;
-                type = (value.type1 == pokemon.type1._id || (pokemon.type2 && value.type1 == pokemon.type2._id)) || !value.type1;
-                doubleType = ((value.type2 == pokemon.type1._id || (pokemon.type2 && value.type2 == pokemon.type2._id)) || !value.type2) || (value.type2 == -1 && !pokemon.type2);
+                type = (value.type1 == pokemon.type1 || (pokemon.type2 != null && value.type1 == pokemon.type2)) || !value.type1;
+                doubleType = ((value.type2 == pokemon.type1 || (pokemon.type2 != null && value.type2 == pokemon.type2)) || !value.type2) || (value.type2 == -1 && !pokemon.type2);
             }
             else{
-                if(value.type1 == "" && value.type2 ==""){
+                if(value.type1 == "" && value.type2 == ""){
                     type = false;
                 }
                 else{
-                    type = (value.type1 == pokemon.type1._id || (pokemon.type2 && value.type1 == pokemon.type2._id)) || !value.type1;
-                    doubleType = ((value.type2 == pokemon.type1._id || (pokemon.type2 && value.type2 == pokemon.type2._id)) || !value.type2) || (value.type2 == -1 && !pokemon.type2);
+                    type = (value.type1 == pokemon.type1 || (pokemon.type2 != null && value.type1 == pokemon.type2)) || !value.type1;
+                    doubleType = ((value.type2 == pokemon.type1 || (pokemon.type2 != null && value.type2 == pokemon.type2)) || !value.type2) || (value.type2 == -1 && !pokemon.type2);
                 }
             }
             resType = resType || (type && doubleType);

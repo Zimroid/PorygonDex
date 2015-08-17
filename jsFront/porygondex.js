@@ -11,7 +11,7 @@ porygondex.config(function($stateProvider, $urlRouterProvider) {
         views: {
             'body': {
                 templateUrl: "html/pokedex.html",
-                controller: 'pokedexController'
+                controller: "pokedexController"
             }
         }
     })
@@ -20,7 +20,7 @@ porygondex.config(function($stateProvider, $urlRouterProvider) {
         views: {
             'body': {
                 templateUrl: "html/pokemon.html",
-                controller: 'pokemonController'
+                controller: "pokemonController"
             }
         }
     })
@@ -28,8 +28,8 @@ porygondex.config(function($stateProvider, $urlRouterProvider) {
         url: "/",
         views : {
             'body' : {
-                // pas besoin de controller
-                templateUrl: "html/home.html"
+                templateUrl: "html/home.html",
+                controller: "homeController"
             }
         }
     })
@@ -64,9 +64,14 @@ porygondex.factory('pokedexSave', [function(){
 
 }]);
 
+porygondex.controller("homeController", function($scope) {
+    $scope.$emit("headerClicked", "home");
+});
+
 //Pour controller le pokedex
-porygondex.controller('pokedexController', function($scope, $timeout, $stateParams, $http, pokedexSave) {
-    $scope.lang = $stateParams.lang;
+porygondex.controller('pokedexController', function($scope, $timeout, $http, pokedexSave) {
+    $scope.$emit("headerClicked", "pokedex");
+
     $scope.pokemons = [];
     $scope.searchopen = false;
     $scope.loading = true;
@@ -249,37 +254,38 @@ porygondex.directive('menuHeader', function($parse){
 //Controle le menu
 porygondex.controller('tabController', function($scope, $location) {
 
-    var page = $location.url().split("/")[1] || '';
-
     $scope.titre = {
         name: 'PorygonDex',
         url: 'home',
-        isClicked: page == ''
+        isClicked: false
     };
 
     $scope.menus = [{
         name: 'Pokédex',
         url: 'pokedex',
-        isClicked: page == 'pokedex' || page == 'pokemon'
+        isClicked: false
     }];
 
-    var oldSelected;
-    
-    if(page == "pokedex" || page ==  "pokemon"){
-        oldSelected = $scope.menus[0];
-    }
-    else{
-        oldSelected = $scope.titre;
-    }
-  
-    $scope.setTab = function(menu){
-        if(oldSelected){
-            oldSelected.isClicked = false;
+    $scope.$on('headerClicked', function (event, data) {
+        if(data == 'home'){
+            $scope.titre.isClicked = true;
+            angular.forEach($scope.menus, function(menu, key){
+                menu.isClicked = false;
+            });
         }
-        
-        menu.isClicked = true;
-        oldSelected = menu;
-    }
+        else{
+            $scope.titre.isClicked = false;
+            angular.forEach($scope.menus, function(menu, key){
+                if(menu.url == data){
+                    menu.isClicked = true;
+                }
+                else{
+                    menu.isClicked = true;
+                }
+            });
+        }
+    });
+
 });
 
 //Empeche le click souris de fonctionner comme un click gauche
@@ -306,6 +312,7 @@ porygondex.directive('leftClick', function($parse){
 
 //Pour controller le pokedex
 porygondex.controller('pokemonController', function($scope, $stateParams, $http) {
+    $scope.$emit("headerClicked", "pokedex");
     $scope.no_national = $stateParams.no_national;
 
     $http.get('/api/v1/pokemon/'+$scope.no_national)
@@ -315,22 +322,23 @@ porygondex.controller('pokemonController', function($scope, $stateParams, $http)
             $http.get('/api/v1/pokemon/pre_evo/'+$scope.no_national)
                 .success(function(data) {
                     $scope.pokemon.evolutions = data;
+
+                    angular.forEach(data, function(evolution, key){
+                        console.log(evolution);
+                        $http.get('/api/v1/pokemon/pre_evo/'+evolution._id)
+                            .success(function(data){
+                                evolution.evolutions = data;
+                            })
+                            .error(function(data){
+
+                            });
+                    });
+
                     
                 })
                 .error(function(data) {
                     //console.log('Error: ' + data);
                 });
-
-            //if(typeof $scope.pokemon.pre_evo !== 'undefined'){
-                /*$http.get('/api/v1/pokemon/'+data.previous_evolution)
-                    .success(function(data) {
-                        $scope.pokemon.previous_evolution = data;
-                        
-                    })
-                    .error(function(data) {
-                        //console.log('Error: ' + data);
-                    });*/
-            //}
 
         })
         .error(function(data) {

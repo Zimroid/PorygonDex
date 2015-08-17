@@ -19,22 +19,27 @@ module.exports = function(app) {
 
 	// get a pokemon by no_national
 	app.get('/api/v1/pokemon/:no', function(req, res) {
-		Pokemon.findOne({"_id": req.params.no}, '-__v', {sort : '_id'}).populate("previous_evolution", "name_en name_fr type1 type2").exec(function(err, pokemon){
+		Pokemon.findOne({"_id": req.params.no}, '-__v', {sort : '_id'}).populate("previous_evolution", "name_en name_fr type1 type2 tmp_evolution_type previous_evolution").exec(function(err, pokemon){
 		    
-		    if(err) {
-	        	res.send(err);
-	        }
+			Pokemon.populate(pokemon, {
+				path: 'previous_evolution.previous_evolution',
+				select: 'name_en name_fr type1 type2'
+			}, function(err, pokemonPopulated){
+				if(err) {
+		        	res.send(err);
+		        }
 
-	        res.charset = 'utf-8';
-	   		res.contentType('text');
+		        res.charset = 'utf-8';
+		   		res.contentType('text');
 
-			res.json(pokemon); // return one pokemon in JSON format
+				res.json(pokemonPopulated); // return one pokemon in JSON format
+			});
 	    });
 	});
 
 	// get a pokemon(s) by previous  evolution
 	app.get('/api/v1/pokemon/pre_evo/:no', function(req, res) {
-		Pokemon.find({"previous_evolution": req.params.no}, 'type1 type2 name_fr', {sort : '_id'}).exec(function(err, pokemon){
+		Pokemon.find({"previous_evolution": req.params.no}, 'type1 type2 name_fr tmp_evolution_type', {sort : '_id'}).exec(function(err, pokemon){
 		    
 		    if(err) {
 	        	res.send(err);

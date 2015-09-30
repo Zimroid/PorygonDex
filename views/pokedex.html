@@ -7,7 +7,7 @@
 
 <div>
      <div class="cardcollection">
-        <div class="card shadowbox" ng-repeat="pokemon in pokemons | filter:search">
+        <div class="card shadowbox" ng-repeat="pokemon in pokemons | filter:search" ng-hide="err">
             <h4>#{{pokemon.no_national | numberFixedLen:3}} - {{pokemon.name_fr}}</h4>
             <div class="cardaligner">
                 <img class="cardimg" ng-src="../img/xy/{{pokemon.no_national | numberFixedLen:3}}.png"/>
@@ -17,6 +17,9 @@
                 {{types[pokemon.type1]}}
                 {{types[pokemon.type2]?" - " + types[pokemon.type2]:""}}
             </div>
+        </div>
+        <div ng-show="err">
+            Une erreur est survenue :/
         </div>
     </div>
 </div>

@@ -9,11 +9,12 @@ module.exports = function(app) {
 		    if(err) {
 	        	res.send(err);
 	        }
+			else {
+		        res.charset = 'utf-8';
+		   		res.contentType('text');
 
-	        res.charset = 'utf-8';
-	   		res.contentType('text');
-
-			res.json(pokemon); // return all pokemon in JSON format
+				res.json(pokemon); // return all pokemon in JSON format
+			}
 	    });
 	});
 
@@ -24,11 +25,12 @@ module.exports = function(app) {
 		    if(err) {
 	        	res.send(err);
 	        }
+	        else{
+		        res.charset = 'utf-8';
+		   		res.contentType('text');
 
-	        res.charset = 'utf-8';
-	   		res.contentType('text');
-
-			res.json(pokemon); // return one pokemon in JSON format
+				res.json(pokemon); // return one pokemon in JSON format
+			}
 	    });
 	});
 

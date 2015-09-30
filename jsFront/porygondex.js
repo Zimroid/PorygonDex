@@ -62,12 +62,24 @@ porygondex.controller('pokedexController', function($scope, $timeout, $statePara
     $scope.searchopen = false;
     $scope.loading = true;
     $scope.types = ["Normal", "Feu", "Eau", "Plante", "Electrique", "Glace", "Combat", "Poison", "Sol", "Vol", "Psy", "Insecte", "Roche", "Spectre", "Dragon", "Ténèbres", "Acier", "Fée"];
-
+    $scope.err = false;
+    
     if(!pokedexSave.get()){
         $http.get('/api/v1/pokemon')
             .success(function(data) {
-                pokedexSave.set(data);
-                $scope.pokemons = data;
+                //gestion au cas ou une erreur surviendrait (par exemple crash de la bdd)
+                /*
+                 * POUR PLUS DE SECURITE IL FAUDRAIT CHANGER LA METHODE DE VERIFICATION DES ERREURS EN CHERCHANT PAR EXEMPLE
+                 * SI LE PREMIER RESULTAT COMPRTE BIEN UN _id, name_fr ET name_en ???
+                 * PARCE QUE VERIFIER SI LA TAILLE EXISTE C'EST PLUTOT BOF...
+                 */
+                if(typeof data.length == "undefined"){
+                    $scope.err = true;
+                }
+                else{                
+                    pokedexSave.set(data);
+                    $scope.pokemons = data;
+                }
             })
             .error(function(data) {
                 //console.log('Error: ' + data);
